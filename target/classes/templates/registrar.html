@@ -1,0 +1,169 @@
+<!doctype html>
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http:/www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" th:href="@{static/css/all.min.css}">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/sb-admin-2/sb-admin-2.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/cover.css}">
+<title>Registrar - PQRS</title>
+</head>
+<body class="">
+
+	<div class="container d-block p-3">
+		<header class="masthead mb-5">
+			<div class="inner">
+				<h3 class="masthead-brand">PQRS - UFPS</h3>
+				<nav class="nav nav-masthead justify-content-center">
+					<a class="nav-link active" th:href="@{/}">Inicio</a> <a
+						class="nav-link" th:href="@{/solicitud/consultar}">Consultar</a> <a
+						class="nav-link" th:href="@{/solicitud/registrar}">Registrar
+						PQRS</a> <a class="nav-link" th:href="@{/registrarUsuario}">Registrar
+						Usuario</a> <a class="nav-link" th:href="@{/login}">Iniciar sesión</a>
+				</nav>
+			</div>
+		</header>
+
+
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}" role="alert"></div>
+		<div class="alert alert-danger" th:if="${danger != null}"
+			th:text="${danger}" role="alert"></div>
+
+
+		<div class="container">
+
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+
+					<h6 class="m-0 font-weight-bold text-primary">Registrar PQRS</h6>
+				</div>
+				<div class="card-body">
+					<form th:action="@{/solicitud/registrar}" th:object="${solicitud}"
+						method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<h5 class="card-title">Datos del usuario</h5>
+							<div class="form-row">
+
+
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label>Identificación *</label> <input type="text"
+											class="form-control" name="identificacion"
+											required="required">
+									</div>
+								</div>
+							
+							</div>
+
+
+						</div>
+						
+						<div class="form-group">
+					
+							<div class="form-row">
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label>Tipo de Solicitud *</label> <select
+											th:field="*{tipoSolicitud}" class="form-control" required
+											name="tipo_solicitud" id="form_tipo_solicitud">
+											<option value="" disabled>Seleccione ..</option>
+
+											<option value="peticion">PETICIÓN</option>
+
+											<option value="queja - reclamo">QUEJA</option>
+
+											<option value="sugerencia">SUGERENCIA</option>
+
+											<option value="reclamo">RECLAMO</option>
+
+											<option value="felicitacion">Felicitacion</option>
+
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label>Motivo de Solicitud *</label> <select
+											th:field="*{motivoSolicitud}" class="form-control" required
+											name="motivo_solicitud" id="select_motivos_solicitud">
+											<option value="" disabled>Seleccione ..</option>
+
+											<option value="tramites administrativos">Tramites
+												administrastivos</option>
+
+											<option value="solicitud de informacion">Solicitud
+												de informacion</option>
+
+											<option value="solicitud de prestacion de servicio">Solicitud
+												de prestacion de un servicio</option>
+
+											<option value="otro">Otro</option>
+
+
+
+										</select>
+									</div>
+								</div>
+
+							         
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input name="file" type="file" class="custom-file-input" id="inputGroupFile01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Cargar</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                        
+							</div>
+							<div class="form-row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Descripción *</label>
+										<textarea th:field="*{descripcion}" class="form-control"
+											name="descripcion" maxlength="2000" required minlength="10"></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="col-md-12 d-flex justify-content-center">
+									<input type="submit" th:value="${titulo}"
+										class="btn btn-secondary" /> <a class="btn btn-danger m-1"
+										href="">Cancelar</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+ 
+  
+
+
+</body>
+   
+
+
+</html>
